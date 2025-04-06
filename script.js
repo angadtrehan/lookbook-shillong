@@ -21,7 +21,7 @@ if (new Date().setHours(0,0,0,0) < new Date('04/12/2025').setHours(0,0,0,0)) {
     const title = document.createElement('h1');
     const sub = document.createElement('p');
     const img = document.createElement('div');
-    img.innerHTML = '<img src="./assets/Screenshot_2025-04-06_at_18.10.12-removebg-preview.png" alt="">';
+    img.innerHTML = '<img src="./assets/Logo.png" alt="">';
     img.classList.add('icon');
     sub.appendChild(document.createTextNode('The full site can be accessed after you get back, come home fastly'));
     sub.id = 'by-ninki';
