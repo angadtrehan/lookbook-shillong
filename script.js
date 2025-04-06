@@ -36,6 +36,7 @@ if (new Date().setHours(0,0,0,0) < new Date('04/07/2025').setHours(0,0,0,0)) {
 } else {
     gsap.registerPlugin(ScrollTrigger);
 
+    ScrollTrigger.normalizeScroll(true);
     // gsap animation
     let tl = gsap.timeline({
         scrollTrigger: {
@@ -45,7 +46,7 @@ if (new Date().setHours(0,0,0,0) < new Date('04/07/2025').setHours(0,0,0,0)) {
             scrub: true,
             markers: false,
             pin: true,
-            pinSpacing: false
+            pinSpacing: false,
         }
     });
     
