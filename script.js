@@ -1,17 +1,17 @@
 import { getPageValues }from './pageValues.js';
 
 // Initialize Lenis
-const lenis = new Lenis({
-    syncTouch: true
-});
+// const lenis = new Lenis({
+//     syncTouch: true
+// });
 
-// Use requestAnimationFrame to continuously update the scroll
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
+// // Use requestAnimationFrame to continuously update the scroll
+// function raf(time) {
+//   lenis.raf(time);
+//   requestAnimationFrame(raf);
+// }
 
-requestAnimationFrame(raf);
+// requestAnimationFrame(raf);
 
 const body = document.querySelector('.view');
 
