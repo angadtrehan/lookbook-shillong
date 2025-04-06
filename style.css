@@ -6,42 +6,143 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: mainMenuTitle;
+    src: url(./assets/fonts/AbrilFatface-Regular.ttf);
+  }
+
 :root {
     font-size: 16pt;
-    line-height: 1.5;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: rgb(218, 235, 192);
+    line-height: 1;
+    font-family: mainMenuTitle;
+    background: rgb(0,10,0);
+    background: -moz-linear-gradient(180deg, rgb(0, 10, 0) 0%, rgb(0, 20, 0) 50%, rgb(0, 30, 0) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(0,10,0,1) 0%, rgba(0,20,0,1) 50%, rgba(0,30,0,1) 100%);
+    background: linear-gradient(180deg, rgba(0,10,0,1) 0%, rgba(0,20,0,1) 50%, rgba(0,30,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000a00",endColorstr="#001400",GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#001400",endColorstr="#001e00",GradientType=1);
+    color: beige;
+    
 }
 
 h1 {
-    font-size: 5rem;
+    font-size: 4rem;
+    font-family: mainMenuTitle;
+    letter-spacing: -13px;
 }
-img {
+p {
+    font-size: 1rem;
+    letter-spacing: -1px;
+    border-bottom: 1px solid beige;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+a:active {
+    color: rgb(0, 45, 0);
+}
+a:active > p {
+    border-bottom: 1px solid rgb(0, 45, 0);
+}
+.box img {
     height: 100%;
     width: auto;
     filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.445));
-    filter: blur(5px);
-    opacity: 0.6;
+    filter: blur(2px);
+    opacity: 0.75;
     position: absolute;
     top: 0;
-    z-index: -1000;
+    z-index: 1;
+}
+body {
+    position:relative;
+}
+.intro {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 3;
+    background-color: beige;
+    color: rgb(0,10,0);
+}
+
+
+#scroll-down {
+    font-size: 0.6rem;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 5px;
+}
+.icon {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon > img {
+    height: 100%;
+    width: auto;
 }
 
 .box {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    top: 0;
+    z-index: 2;
+    position: relative;
+    margin-top: -100vh;
 }
 .box > div {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-basis: 100vh;
     position: relative;
 }
+.box > div > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+.day-1, .day-3, .day-5 {
+    left: 0;
+    text-align: right;
+}
 .day-2, .day-4 {
     flex-direction: row-reverse;
+    text-align: left;
+}
+.day-1 > div, .day-3 > div, .day-5 > div {
+    align-items: flex-end;
+}
+.day-2 > div, .day-4 > div {
+    align-items: flex-start;
+}
+.day-1 > img, .day-3 > img, .day-5 > img {
+    left: 0;
 }
 .day-2 > img, .day-4 > img {
     right: 0;
+}
+
+
+.box p:hover {
+    color: green;
+}
+
+.space {
+    height: 40vh;
 }
