@@ -1,17 +1,17 @@
 import { getPageValues }from './pageValues.js';
 
 // Initialize Lenis
-// const lenis = new Lenis({
-//     syncTouch: true
-// });
+const lenis = new Lenis({
+    syncTouch: true
+});
 
-// // Use requestAnimationFrame to continuously update the scroll
-// function raf(time) {
-//   lenis.raf(time);
-//   requestAnimationFrame(raf);
-// }
+// Use requestAnimationFrame to continuously update the scroll
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
 
-// requestAnimationFrame(raf);
+requestAnimationFrame(raf);
 
 const body = document.querySelector('.view');
 
@@ -51,7 +51,7 @@ if (new Date().setHours(0,0,0,0) < new Date('04/07/2025').setHours(0,0,0,0)) {
     });
     
     tl.to('.intro', {
-        y: -1200
+        y: -1000
     });
 }
 
@@ -70,7 +70,6 @@ const popdownAnimation = [
 ];
 
 const popupAnimationOptions = {
-    delay: 20,
     duration: 500, 
     easing: 'ease-out' 
 };
@@ -93,52 +92,68 @@ closePopup.addEventListener('click', () => {
     setTimeout(() => {
         dialog.close();
     }, 490);
-    
+    queryParams.delete('look');
+    history.replaceState(null, null, "?" + queryParams.toString());
 });
 
-switch(look) {
-    case 'blue':
-    case 'black':
-    case 'rust':
-    case 'dungaree':
-    case 'beige':
-        console.log(getPageValues(look));
-        values = getPageValues(look);
-        headerImage.src = values['headerImageSource'];
-        headerTitle.innerText = values['headerTitle'];
-        headerTitle.style.color = values['headerTitleColour'];
-        pairedWithImage.src = values['pairedWithImageSource'];
-        descriptionText.innerText = values['descriptionText'];
-        header.style.backgroundColor = values['headerColour'];
-        pairedWith.style.backgroundColor = values['pairedWithBgColour'];
-        closePopup.style.color = values['headerTitleColour'];
-        dialog.showModal();
-        lookSection.animate(popupAnimation, popupAnimationOptions);
-        body.style.height = '100vh';
-        body.style.overflow = 'hidden';
-        if (values['isLast']) {
-            setTimeout(() => {
-                console.log('trigger');
-                const closeHint = document.querySelector('#close-hint');
-                closeHint.style.opacity = 0;
-                closeHint.innerText = 'you can try this now :)';
-                closeHint.animate(
-                    [
-                        {opacity: "0"},
-                        {opacity: "1"}
-                    ],
-                    {
-                        duration: 500, 
-                        easing: 'ease-out' 
-                    }
-                );
-                closeHint.style.opacity = 1;
-            }, 2000);
-        }
-        break;
-    default:
-        console.log('invalid look');
-        break;
+handlePopups(look, true);
+
+const links = document.querySelectorAll('.box > div a');
+
+for (const link of links) {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        handlePopups(link.id, false);
+    });
 }
-console.log(window.location.href);
-history.replaceState(null, null, "?" + queryParams.toString());
+
+
+function handlePopups(look, fromLink) {
+    switch(look) {
+        case 'blue':
+        case 'black':
+        case 'rust':
+        case 'dungaree':
+        case 'beige':
+            console.log(getPageValues(look));
+            values = getPageValues(look);
+            headerImage.src = values['headerImageSource'];
+            headerTitle.innerText = values['headerTitle'];
+            headerTitle.style.color = values['headerTitleColour'];
+            pairedWithImage.src = values['pairedWithImageSource'];
+            descriptionText.innerText = values['descriptionText'];
+            header.style.backgroundColor = values['headerColour'];
+            pairedWith.style.backgroundColor = values['pairedWithBgColour'];
+            closePopup.style.color = values['headerTitleColour'];
+            const closeHint = document.querySelector('#close-hint');
+            closeHint.innerText = '';
+            dialog.showModal();
+            lookSection.animate(popupAnimation, popupAnimationOptions);
+            if (values['isLast'] && fromLink) {
+                setTimeout(() => {
+                    console.log('trigger');
+                    closeHint.style.opacity = 0;
+                    closeHint.innerText = 'you can try this now :)';
+                    closeHint.animate(
+                        [
+                            {opacity: "0"},
+                            {opacity: "1"}
+                        ],
+                        {
+                            duration: 500, 
+                            easing: 'ease-out' 
+                        }
+                    );
+                    closeHint.style.opacity = 1;
+                }, 2000);
+            }
+            break;
+        default:
+            console.log('invalid look');
+            queryParams.delete('look');
+            break;
+    }
+    console.log(window.location.href);
+    queryParams.set('look', btoa(look));
+    history.replaceState(null, null, "?" + queryParams.toString());
+}
