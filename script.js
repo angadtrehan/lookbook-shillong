@@ -15,7 +15,7 @@ requestAnimationFrame(raf);
 
 const body = document.querySelector('.view');
 
-if (new Date().setHours(0,0,0,0) < new Date('04/07/2025').setHours(0,0,0,0)) {
+if (new Date().setHours(0,0,0,0) < new Date('04/12/2025').setHours(0,0,0,0)) {
     console.log('site should not be accessed from index');
     const message = document.createElement('div');
     const title = document.createElement('h1');
