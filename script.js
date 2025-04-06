@@ -147,6 +147,7 @@ function handlePopups(look, fromLink) {
                     closeHint.style.opacity = 1;
                 }, 2000);
             }
+            queryParams.set('look', btoa(look));
             break;
         default:
             console.log('invalid look');
@@ -154,6 +155,5 @@ function handlePopups(look, fromLink) {
             break;
     }
     console.log(window.location.href);
-    queryParams.set('look', btoa(look));
     history.replaceState(null, null, "?" + queryParams.toString());
 }
