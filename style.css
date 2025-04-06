@@ -29,6 +29,7 @@ h1 {
     font-size: 4rem;
     font-family: mainMenuTitle;
     letter-spacing: -13px;
+    text-shadow: -2px 2px 10px rgba(0, 0, 0, 0.399);
 }
 p {
     font-size: 1rem;
@@ -54,9 +55,9 @@ a:active > p {
     opacity: 0.75;
     position: absolute;
     top: 0;
-    z-index: 1;
+    z-index: -1;
 }
-body {
+.view {
     position:relative;
 }
 .intro {
@@ -145,4 +146,157 @@ body {
 
 .space {
     height: 40vh;
+}
+
+#by-ninki {
+    color: rgb(77, 82, 77);
+}
+
+
+body {
+    position: relative;
+}
+dialog[open] {
+    outline: 0;
+    border: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: transparent;
+    position: absolute;
+    top:0;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+::backdrop {
+    backdrop-filter: blur(1px);
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+#look {
+    position: relative;
+    min-height: 100%;
+    width: 98%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: beige;
+    overflow: hidden;
+    box-shadow: -2px -2px 20px rgba(0, 0, 0, 0.434);
+}
+
+#look p {
+    border: 0;
+}
+
+#look .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    background-color: rgb(199, 216, 250);
+    box-shadow: 0px 12px 30px -2px black;
+    z-index: 11;
+}
+
+#look .header > h1 {
+    z-index: 10;
+    letter-spacing: -5px;
+    text-align: center;
+    color: rgb(0, 20, 0);
+}
+
+#look .header-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#look .header-image > img {
+    height: 70%;
+    width: auto;
+    filter: drop-shadow(2px 2px 10x black);
+}
+#look .paired-with {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    border-radius: 50%;
+    background-color: rgb(220, 228, 245);
+    height: 5vh;
+    width: 5vh;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+#look .paired-with .image {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(10deg) translateY(-5px);
+}
+#look .paired-with .image > img {
+    height: auto;
+    width: 135%;
+}
+
+#look .description {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5%;
+    position: relative;
+}
+#look .description p {
+    font-size: 1.5rem;
+    border: 0;
+    color: rgb(0, 20, 0);
+}
+
+#look .description span {
+    height: 4px;
+    width: 50px;
+    background-color: black;
+    position: absolute;
+}
+.line-above {
+    top: -10px;
+    left: 0;
+}
+
+#close-icon {
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+    right: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    height: 0.7rem;
+    width: 0.7rem;
+    line-height: 0.7rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+#close-hint {
+    position: absolute;
+    z-index: 999;
+    top: calc(10px + 0.15rem);
+    right: calc(10px + 0.7rem + 5px);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    height: 0.5rem;
+    width: fit-content;
+    line-height: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.5rem;
 }
