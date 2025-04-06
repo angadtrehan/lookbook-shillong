@@ -2,9 +2,9 @@ export function getPageValues(look) {
     switch (look) {
         case 'blue':
             return {
-                headerImageSource: '../assets/Day 1 - Blue Kurta Set.png',
+                headerImageSource: './assets/Blue_Kurta_Set.png',
                 headerTitle: 'Baby Blues',
-                pairedWithImageSource: '../assets/White Shoes.png',
+                pairedWithImageSource: './assets/White_Shoes.png',
                 descriptionText: "You look gorgeous baby, this was such a good find. It's so elegant and pairing it with the white shoes AND your braids... *chef's kiss*. You look amazing tinki, such a good outfit hehehe I love it so much.",
                 headerColour: 'rgb(199, 216, 250)',
                 pairedWithBgColour: 'rgb(220, 228, 245)',
@@ -12,9 +12,9 @@ export function getPageValues(look) {
             }
         case 'black':
             return {
-                headerImageSource: '../assets/Day 2 - Black Dress Set.png',
+                headerImageSource: './assets/Black_Dress_Set.png',
                 headerTitle: 'Black on Black',
-                pairedWithImageSource: '../assets/White Shoes.png',
+                pairedWithImageSource: './assets/White_Shoes.png',
                 descriptionText: "I absolutely LOVE this one - it's my second favorite. You look absolutely stunning my jaan, this whole outfit is top class HEHE. I wish I was with you right now and could watch you do one fashion walk :')",
                 headerColour: 'rgb(16, 15, 20)',
                 pairedWithBgColour: 'rgb(62, 57, 81)',
@@ -22,9 +22,9 @@ export function getPageValues(look) {
             }
         case 'rust':
             return {
-                headerImageSource: '../assets/Day 3 - Rust.png',
+                headerImageSource: './assets/Rust.png',
                 headerTitle: 'Rustic Brillance',
-                pairedWithImageSource: '../assets/White Shoes.png',
+                pairedWithImageSource: './assets/White_Shoes.png',
                 descriptionText: "This. This is my favorite. I actually found out while looking for the images that this is supposed to be a pyjama set. Trust my ninki's eye to see what others cannot hehe. You look absolutely fucking beautiful. I love it so much",
                 headerColour: 'rgb(113, 30, 31)',
                 pairedWithBgColour: 'rgb(126, 61, 51)',
@@ -32,9 +32,9 @@ export function getPageValues(look) {
             }
         case 'dungaree':
             return {
-                headerImageSource: '../assets/Day 4 - Dungaree.png',
+                headerImageSource: './assets/Dungaree.png',
                 headerTitle: 'Dungaree Doo',
-                pairedWithImageSource: '../assets/White Shoes.png',
+                pairedWithImageSource: './assets/White_Shoes.png',
                 descriptionText: "You're making me want to put you in between two peices of bread and just FKN GOBBLE YOU UP. I genuinely cannot get enough of you in this, you're looking beautiful baby. I love it i love it HEHE",
                 headerColour: 'rgb(50, 77, 116)',
                 pairedWithBgColour: 'rgb(93, 130, 211)',
@@ -42,9 +42,9 @@ export function getPageValues(look) {
             }
         case 'beige':
             return {
-                headerImageSource: '../assets/Day 5 - Beige Dress.png',
+                headerImageSource: './assets/Beige.png',
                 headerTitle: 'Sunflower Power',
-                pairedWithImageSource: '../assets/White Shoes.png',
+                pairedWithImageSource: './assets/White_Shoes.png',
                 descriptionText: "Last, but by no means the least - elegant, timeless, effortlessly pretty. You look absolutely perfect. I'm the luckiest idiot in the entire universe to have you be mine, nayaneeka. Ab bas jaldi se mere paas aaja 😭",
                 headerColour: 'rgb(189, 179, 163)',
                 pairedWithBgColour: 'rgb(169, 151, 121)',
