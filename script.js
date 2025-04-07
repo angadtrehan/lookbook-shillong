@@ -66,8 +66,8 @@ if (new Date().setHours(0,0,0,0) < new Date(TARGET_DATE).setHours(0,0,0,0)) {
     });
 }
 
-const queryParams = new URLSearchParams(window.location.search);
-const look = atob(queryParams.get('look')).trim();
+let queryParams = new URLSearchParams(window.location.search);
+let look = atob(queryParams.get('look')).trim();
 console.log(look);
 
 const popupAnimation = [
@@ -117,7 +117,7 @@ closePopup.addEventListener('click', () => {
         dialog.close();
     }, 490);
     queryParams.delete('look');
-    history.replaceState(null, null, "?" + queryParams.toString());
+    history.pushState(null, null, "?" + queryParams.toString());
 });
 
 handlePopups(look, true);
@@ -130,6 +130,13 @@ for (const link of links) {
         handlePopups(link.id, false);
     });
 }
+
+window.addEventListener('popstate', () => {
+    queryParams = new URLSearchParams(window.location.search);
+    look = atob(queryParams.get('look')).trim();
+    console.log(look);
+    handlePopups(look, true);
+})
 
 
 function handlePopups(look, fromLink) {
@@ -179,8 +186,13 @@ function handlePopups(look, fromLink) {
         default:
             console.log('invalid look');
             queryParams.delete('look');
+            closePopup.dispatchEvent(new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            }));
             break;
     }
     console.log(window.location.href);
-    history.replaceState(null, null, "?" + queryParams.toString());
+    history.pushState(null, null, "?" + queryParams.toString());
 }
