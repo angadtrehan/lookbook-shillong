@@ -14,7 +14,7 @@ export function getPageValues(look) {
             return {
                 headerImageSource: './assets/Black_Dress_Set.png',
                 headerTitle: 'Black on Black',
-                pairedWithImageSource: './assets/White_Shoes.png',
+                pairedWithImageSource: './assets/Black_Shoes.png',
                 descriptionText: "I absolutely LOVE this one - it's my second favorite. You look absolutely stunning my jaan, this whole outfit is top class HEHE. I wish I was with you right now and could watch you do one fashion walk :')",
                 headerColour: 'rgb(16, 15, 20)',
                 pairedWithBgColour: 'rgb(62, 57, 81)',
@@ -24,7 +24,7 @@ export function getPageValues(look) {
             return {
                 headerImageSource: './assets/Rust.png',
                 headerTitle: 'Rustic Brillance',
-                pairedWithImageSource: './assets/White_Shoes.png',
+                pairedWithImageSource: './assets/Black_Shoes.png',
                 descriptionText: "This. This is my favorite. I actually found out while looking for the images that this is supposed to be a pyjama set. Trust my ninki's eye to see what others cannot hehe. You look absolutely fucking beautiful. I love it so much",
                 headerColour: 'rgb(113, 30, 31)',
                 pairedWithBgColour: 'rgb(126, 61, 51)',

@@ -1,4 +1,5 @@
-import { getPageValues }from './pageValues.js';
+import { getPageValues } from './pageValues.js';
+import { Countdown } from './timer.js';
 
 // Initialize Lenis
 const lenis = new Lenis({
@@ -14,8 +15,9 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 const body = document.querySelector('.view');
+const TARGET_DATE = 'April, 12 2025 00:00:00';
 
-if (new Date().setHours(0,0,0,0) < new Date('04/12/2025').setHours(0,0,0,0)) {
+if (new Date().setHours(0,0,0,0) < new Date(TARGET_DATE).setHours(0,0,0,0)) {
     console.log('site should not be accessed from index');
     const message = document.createElement('div');
     const title = document.createElement('h1');
@@ -23,13 +25,22 @@ if (new Date().setHours(0,0,0,0) < new Date('04/12/2025').setHours(0,0,0,0)) {
     const img = document.createElement('div');
     img.innerHTML = '<img src="./assets/Logo.png" alt="">';
     img.classList.add('icon');
-    sub.appendChild(document.createTextNode('The full site can be accessed after you get back, come home fastly'));
+    sub.appendChild(document.createTextNode("The full site can be accessed after you get back, come home fastly :')"));
     sub.id = 'by-ninki';
+    sub.classList.add('special');
     title.appendChild(document.createTextNode('NOT YET'));
     message.classList.add('intro');
+    message.classList.add('special');
+
+    const timer = new Countdown({
+        doc: document,
+        targetDate: new Date(TARGET_DATE) 
+    });
+
     message.appendChild(title);
     message.appendChild(sub);
     message.appendChild(img);
+    message.appendChild(timer.getTimerObject());
     body.innerHTML = '';
     body.appendChild(message);
     body.style.position = 'relative';
@@ -64,6 +75,16 @@ const popupAnimation = [
     {transform: "translateY(0)"}
 ];
 
+const backdropAnimationUp = [
+    {opacity: "0"},
+    {opactiy: "1"}
+]
+
+const backdropAnimationDown = [
+    {opacity: "1"},
+    {opactiy: "0"}
+]
+
 const popdownAnimation = [
     {transform: "translateY(0)"},
     {transform: "translateY(100vh)"}
@@ -76,6 +97,7 @@ const popupAnimationOptions = {
 
 const dialog = document.querySelector('.popup');
 const lookSection = document.querySelector('#look');
+const backdropSpan = document.querySelector('#backdrop');
 const headerImage = document.querySelector('#look > .header > .header-image > img');
 const headerTitle = document.querySelector('#look > .header > h1');
 const pairedWithImage = document.querySelector('#look > .header > .paired-with > .image > img');
@@ -86,6 +108,8 @@ let values;
 
 const closePopup = document.querySelector('#close-icon');
 closePopup.addEventListener('click', () => {
+    backdropSpan.animate(backdropAnimationDown, popupAnimationOptions);
+    backdropSpan.style.opacity = 0;
     lookSection.animate(popdownAnimation, popupAnimationOptions);
     body.style.height = '';
     body.style.overflow = '';
@@ -128,7 +152,10 @@ function handlePopups(look, fromLink) {
             const closeHint = document.querySelector('#close-hint');
             closeHint.innerText = '';
             dialog.showModal();
+            backdropSpan.style.opacity = 0;
+            backdropSpan.animate(backdropAnimationUp, popupAnimationOptions);
             lookSection.animate(popupAnimation, popupAnimationOptions);
+            backdropSpan.style.opacity = 1;
             if (values['isLast'] && fromLink) {
                 setTimeout(() => {
                     console.log('trigger');
