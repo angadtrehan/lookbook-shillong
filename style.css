@@ -40,8 +40,10 @@ h1 {
 p {
     font-size: 1rem;
     letter-spacing: -1px;
-    border-bottom: 1px solid beige;
     font-family: "Limelight", sans-serif;
+}
+.box p {
+    border-bottom: 1px solid beige;
 }
 a {
     text-decoration: none;
