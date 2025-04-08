@@ -45,11 +45,10 @@ export function getPageValues(look) {
                 headerImageSource: './assets/Beige.png',
                 headerTitle: 'Sunflower Power',
                 pairedWithImageSource: './assets/White_Shoes.png',
-                descriptionText: "Last, but by no means the least - elegant, timeless, effortlessly pretty. You look absolutely perfect. I'm the luckiest idiot in the entire universe to have you be mine, nayaneeka. Ab bas jaldi se mere paas aaja 😭",
+                descriptionText: "Elegant, timeless, effortlessly pretty. You look absolutely perfect. I'm the luckiest idiot in the entire universe to have you be mine, nayaneeka. Ab bas jaldi se mere paas aaja 😭 ONLY 3 DAY LEFT MY BABY",
                 headerColour: 'rgb(189, 179, 163)',
                 pairedWithBgColour: 'rgb(169, 151, 121)',
-                headerTitleColour: 'rgb(24, 15, 0)',
-                isLast: true
+                headerTitleColour: 'rgb(24, 15, 0)'
             }
     }
 }

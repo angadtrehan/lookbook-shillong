@@ -17,7 +17,7 @@ requestAnimationFrame(raf);
 const body = document.querySelector('.view');
 const TARGET_DATE = 'April, 12 2025 00:00:00';
 
-if (new Date().setHours(0,0,0,0) < new Date(TARGET_DATE).setHours(0,0,0,0)) {
+if (dateCompare()) {
     console.log('site should not be accessed from index');
     const message = document.createElement('div');
     const title = document.createElement('h1');
@@ -163,11 +163,12 @@ function handlePopups(look, fromLink) {
             backdropSpan.animate(backdropAnimationUp, popupAnimationOptions);
             lookSection.animate(popupAnimation, popupAnimationOptions);
             backdropSpan.style.opacity = 1;
-            if (values['isLast'] && fromLink) {
+            if (fromLink && dateCompare(true)) {
                 setTimeout(() => {
                     console.log('trigger');
                     closeHint.style.opacity = 0;
                     closeHint.innerText = 'you can try this now :)';
+                    closeHint.style.color = values['headerTitleColour'];
                     closeHint.animate(
                         [
                             {opacity: "0"},
@@ -195,4 +196,11 @@ function handlePopups(look, fromLink) {
     }
     console.log(window.location.href);
     history.pushState(null, null, "?" + queryParams.toString());
+}
+
+function dateCompare(specific) {
+    if (specific) {
+        return new Date().setHours(0,0,0,0) === new Date(TARGET_DATE).setHours(0,0,0,0);
+    }
+    return new Date().setHours(0,0,0,0) < new Date(TARGET_DATE).setHours(0,0,0,0);
 }
