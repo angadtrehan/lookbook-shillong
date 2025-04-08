@@ -7,22 +7,38 @@ export class Countdown {
         this.refs = {
             days: {
                 parent: document.createElement('div'),
-                text: document.createElement('h1'),
+                subParent: document.createElement('div'),
+                timerLeft: document.createElement('div'),
+                timerRight: document.createElement('div'),
+                textLeft: document.createElement('h1'),
+                textRight: document.createElement('h1'),
                 desc: document.createElement('p')
             },
             hours: {
                 parent: document.createElement('div'),
-                text: document.createElement('h1'),
+                subParent: document.createElement('div'),
+                timerLeft: document.createElement('div'),
+                timerRight: document.createElement('div'),
+                textLeft: document.createElement('h1'),
+                textRight: document.createElement('h1'),
                 desc: document.createElement('p')
             },
             minutes: {
                 parent: document.createElement('div'),
-                text: document.createElement('h1'),
+                subParent: document.createElement('div'),
+                timerLeft: document.createElement('div'),
+                timerRight: document.createElement('div'),
+                textLeft: document.createElement('h1'),
+                textRight: document.createElement('h1'),
                 desc: document.createElement('p')
             },
             seconds: {
                 parent: document.createElement('div'),
-                text: document.createElement('h1'),
+                subParent: document.createElement('div'),
+                timerLeft: document.createElement('div'),
+                timerRight: document.createElement('div'),
+                textLeft: document.createElement('h1'),
+                textRight: document.createElement('h1'),
                 desc: document.createElement('p')
             }
         };
@@ -45,7 +61,11 @@ export class Countdown {
                     break;
 
             }
-            this.refs[ref].parent.appendChild(this.refs[ref].text);
+            this.refs[ref].timerLeft.appendChild(this.refs[ref].textLeft);
+            this.refs[ref].timerRight.appendChild(this.refs[ref].textRight);
+            this.refs[ref].subParent.appendChild(this.refs[ref].timerLeft);
+            this.refs[ref].subParent.appendChild(this.refs[ref].timerRight);
+            this.refs[ref].parent.appendChild(this.refs[ref].subParent);
             this.refs[ref].parent.appendChild(this.refs[ref].desc);
             this.timer.appendChild(this.refs[ref].parent);
         }
@@ -70,10 +90,14 @@ export class Countdown {
     }
 
     updateTimer({ days, hours, mins, secs }) {
-        this.refs.days.text.innerText = String(days).padStart(2, '0');
-        this.refs.hours.text.textContent = String(hours).padStart(2, '0');
-        this.refs.minutes.text.textContent = String(mins).padStart(2, '0');
-        this.refs.seconds.text.textContent = String(secs).padStart(2, '0');
+        this.refs.days.textLeft.innerText = String(days).padStart(2, '0').at(0);
+        this.refs.days.textRight.innerText = String(days).padStart(2, '0').at(1);
+        this.refs.hours.textLeft.innerText = String(hours).padStart(2, '0').at(0);
+        this.refs.hours.textRight.innerText = String(hours).padStart(2, '0').at(1);
+        this.refs.minutes.textLeft.innerText = String(mins).padStart(2, '0').at(0);
+        this.refs.minutes.textRight.innerText = String(mins).padStart(2, '0').at(1);
+        this.refs.seconds.textLeft.innerText = String(secs).padStart(2, '0').at(0);
+        this.refs.seconds.textRight.innerText = String(secs).padStart(2, '0').at(1);
     }
 
     startTimer() {

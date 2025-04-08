@@ -330,22 +330,34 @@ dialog[open] {
 
 .timer > div {
     flex: 0;
-    flex-basis: 2.5rem;
+    flex-basis: calc(3rem);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.timer > div > h1 {
-    width: fit-content;
+.timer > div > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1px;
+}
+
+.timer > div > div > div {
+    width: 40%;
+}
+
+.timer h1 {
+    width: 100%;
     font-size: 2.2rem;
     color: rgba(33, 39, 33, 0.95);
     z-index: 11;
-    margin: auto;
+    text-align: center;
 }
 
-.timer > div > p {
+.timer p {
     margin-top: -5px;
     width: 100%;
     font-size: 0.7rem;
