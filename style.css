@@ -16,11 +16,9 @@
     line-height: 1;
     font-family: mainMenuTitle;
     background: rgb(0,10,0);
-    background: -moz-linear-gradient(180deg, rgb(0, 10, 0) 0%, rgb(0, 20, 0) 50%, rgb(0, 30, 0) 100%);
-    background: -webkit-linear-gradient(180deg, rgba(0,10,0,1) 0%, rgba(0,20,0,1) 50%, rgba(0,30,0,1) 100%);
-    background: linear-gradient(180deg, rgba(0,10,0,1) 0%, rgba(0,20,0,1) 50%, rgba(0,30,0,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000a00",endColorstr="#001400",GradientType=1);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#001400",endColorstr="#001e00",GradientType=1);
+    background: -moz-linear-gradient(180deg, rgb(0, 10, 0) 0%, rgb(0, 15, 0) 50%, rgb(0, 20, 0) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(0,10,0,1) 0%, rgba(0,15,0,1) 50%, rgba(0,20,0,1) 100%);
+    background: linear-gradient(180deg, rgba(0,10,0,1) 0%, rgba(0,15,0,1) 50%, rgba(0,20,0,1) 100%);
     color: beige;
     
 }
@@ -29,8 +27,15 @@ h1 {
     font-size: 3.5rem;
     font-family: mainMenuTitle;
     letter-spacing: -10px;
-    text-shadow: -2px 2px 20px rgba(0, 0, 0, 0.427);
+    filter: drop-shadow(-2px 2px 20px rgba(0, 0, 0, 0.427));
     word-spacing: 5px;
+}
+.box h1 {
+    padding: 10px;
+    background: linear-gradient(rgb(136, 136, 122), beige);
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 p {
     font-size: 1rem;
@@ -59,11 +64,13 @@ a:active > p {
     top: 0;
     z-index: -1;
 }
+
 .view {
     position:relative;
 }
 .intro {
     height: 101vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -122,17 +129,17 @@ a:active > p {
 }
 .day-1, .day-3, .day-5 {
     left: 0;
-    text-align: right;
+    text-align: center;
 }
 .day-2, .day-4 {
     flex-direction: row-reverse;
-    text-align: left;
+    text-align: center;
 }
 .day-1 > div, .day-3 > div, .day-5 > div {
-    align-items: flex-end;
+    align-items: center;
 }
 .day-2 > div, .day-4 > div {
-    align-items: flex-start;
+    align-items: center;
 }
 .day-1 > img, .day-3 > img, .day-5 > img {
     left: 0;
@@ -185,10 +192,11 @@ dialog[open] {
 
 #look {
     position: relative;
-    min-height: 100%;
     width: 98%;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -310,6 +318,10 @@ dialog[open] {
     font-size: 0.5rem;
 }
 
+#worn {
+    display: none;
+}
+
 
 .intro.special > h1 {
     font-size: 4rem;
@@ -363,4 +375,117 @@ dialog[open] {
     font-size: 0.7rem;
     color: rgba(75, 87, 75, 0.628);
     z-index: 10;
+}
+
+@media (min-width: 640px) {
+    .intro h1 {
+        font-size: 12vw;
+    }
+
+    #scroll-down {
+        bottom: 2vh;
+    }
+
+    .box > div {
+        justify-content: center;
+    }
+
+    .box img {
+        filter: blur(8px) grayscale(1);
+        transition: filter 0.5s ease-in-out;
+    }
+    .day-1 img, .day-3 img, .day-5 img {
+        left: 20%;
+    }
+    .day-2 img, .day-4 img {
+        right: 20%;
+    }
+    .day-1 img {
+        content: url("./assets/Blue_Kurta_Set.png");
+    }
+    .day-2 img {
+        content: url("./assets/Black_Dress_Set.png");
+    }
+    .day-3 img {
+        content: url("./assets/Rust.png");
+    }
+    .day-4 img {
+        content: url("./assets/Dungaree.png");
+    }
+    .day-5 img {
+        content: url("./assets/Beige.png");
+    }
+
+    .view:has(.pin-spacer:hover) .day-1 img {
+        filter: blur(0) grayscale(0);
+    }
+    .box > div:hover img {
+        filter: blur(0) grayscale(0);
+    }
+
+    .day-1 > div, .day-3 > div, .day-5 > div {
+        align-items: flex-end;
+    }
+    .day-2 > div, .day-4 > div {
+        align-items: flex-start;
+    }
+    .box h1 {
+        font-size: 8.5vw;
+        text-align: center;
+    }
+    .box a{
+        padding: 0 10px;
+        margin-top: -2.3vw;
+        z-index: 10000;
+    }
+    
+    dialog[open] {
+        align-items: center;
+    }
+    #look {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        width: 40%;
+    }
+
+    #look > .header > h1 {
+        font-size: 7vw;
+    }
+    #look > .description > p {
+        font-size: 1.5vw;
+    }
+    #worn {
+        display: initial;
+        height: fit-content;
+        width: 100px;
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        font-size: 0.8rem;
+        padding: 5px;
+        z-index: 9;
+        color: beige;
+        opacity: 0;
+    }
+
+
+    .intro.special > h1 {
+        font-size: 12vw;
+    }
+    #by-ninki.special {
+        font-size: 1.3vw;
+    }
+    .timer {
+        bottom: 10vh;
+    }
+    
+    .timer h1 {
+        font-size: 2.2rem;
+    }
+    
+    .timer p {
+        font-size: 0.7rem;
+    }
 }

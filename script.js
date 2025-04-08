@@ -62,7 +62,7 @@ if (dateCompare()) {
     });
     
     tl.to('.intro', {
-        y: -1000
+        y: (-(window.innerHeight + 100)) 
     });
 }
 
@@ -86,13 +86,13 @@ const backdropAnimationDown = [
 ]
 
 const popdownAnimation = [
-    {transform: "translateY(0)"},
+    {transform: "translateY(-5vh)"},
     {transform: "translateY(100vh)"}
 ];
 
 const popupAnimationOptions = {
     duration: 500, 
-    easing: 'ease-out' 
+    easing: 'ease-in-out' 
 };
 
 const dialog = document.querySelector('.popup');
@@ -104,20 +104,45 @@ const pairedWithImage = document.querySelector('#look > .header > .paired-with >
 const descriptionText = document.querySelector('#look > .description > p');
 const header = document.querySelector('#look > .header');
 const pairedWith = document.querySelector('#look > .header > .paired-with');
+const wornOn = document.querySelector('#worn');
 let values;
 
 const closePopup = document.querySelector('#close-icon');
 closePopup.addEventListener('click', () => {
-    backdropSpan.animate(backdropAnimationDown, popupAnimationOptions);
-    backdropSpan.style.opacity = 0;
-    lookSection.animate(popdownAnimation, popupAnimationOptions);
-    body.style.height = '';
-    body.style.overflow = '';
+    if (!dateCompare()) {
+        wornOn.style.zIndex = '0';
+        wornOn.animate(
+            [
+                {opacity: "1", left: "70%"},
+                {opacity: "0", left: "50%"}
+            ],
+            popupAnimationOptions
+        );
+        wornOn.style.opacity = 0;
+        wornOn.style.left = '50%';
+    }
+    lookSection.animate(
+        [
+            {transform: "translateY(0vh)", borderBottomLeftRadius: `${window.getComputedStyle(lookSection).getPropertyValue('border-bottom-left-radius')}`, borderBottomRightRadius: `${window.getComputedStyle(lookSection).getPropertyValue('border-bottom-right-radius')}`},
+            {transform: "translateY(-5vh)", borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px'}
+        ],
+        {
+            duration: 500,
+            easing: 'ease-in-out'
+        }
+    );
     setTimeout(() => {
-        dialog.close();
-    }, 490);
-    queryParams.delete('look');
-    history.pushState(null, null, "?" + queryParams.toString());
+        backdropSpan.animate(backdropAnimationDown, popupAnimationOptions);
+        backdropSpan.style.opacity = 0;
+        lookSection.animate(popdownAnimation, popupAnimationOptions);
+        body.style.height = '';
+        body.style.overflow = '';
+        setTimeout(() => {
+            dialog.close();
+        }, 490);
+        queryParams.delete('look');
+        history.pushState(null, null, "?" + queryParams.toString());
+    }, 500);
 });
 
 handlePopups(look, true);
@@ -163,6 +188,24 @@ function handlePopups(look, fromLink) {
             backdropSpan.animate(backdropAnimationUp, popupAnimationOptions);
             lookSection.animate(popupAnimation, popupAnimationOptions);
             backdropSpan.style.opacity = 1;
+            if (!dateCompare()) {
+                if (values['wornOn'] !== '') {
+                    wornOn.textContent = `Worn on ${values['wornOn']}`;
+                } else {
+                    wornOn.textContent = `Not worn (yet)`;
+                }
+                setTimeout(() => {
+                    wornOn.animate(
+                        [
+                            {opacity: "0", left: "50%"},
+                            {opacity: "1", left: "70%"}
+                        ],
+                        popupAnimationOptions
+                    );
+                    wornOn.style.opacity = 1;
+                    wornOn.style.left = '70%';
+                }, 500);  
+            }
             if (fromLink && dateCompare(true)) {
                 setTimeout(() => {
                     console.log('trigger');
@@ -176,7 +219,7 @@ function handlePopups(look, fromLink) {
                         ],
                         {
                             duration: 500, 
-                            easing: 'ease-out' 
+                            easing: 'ease-in-out' 
                         }
                     );
                     closeHint.style.opacity = 1;
