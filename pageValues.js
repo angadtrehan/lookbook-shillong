@@ -9,7 +9,7 @@ export function getPageValues(look) {
                 headerColour: 'rgb(199, 216, 250)',
                 pairedWithBgColour: 'rgb(220, 228, 245)',
                 headerTitleColour: 'rgb(0, 20, 0)',
-                wornOn: ''
+                wornOn: '12/04/2025'
             }
         case 'black':
             return {
@@ -31,7 +31,7 @@ export function getPageValues(look) {
                 headerColour: 'rgb(113, 30, 31)',
                 pairedWithBgColour: 'rgb(126, 61, 51)',
                 headerTitleColour: 'rgb(20, 0, 0)',
-                wornOn: ''
+                wornOn: '11/04/2025'
             }
         case 'dungaree':
             return {
